@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Our Online Store</h1>
+    <p>Browse our collection of products below</p>
+</header>
+
+<div class="container">
+    {% if products %}
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <h3>{{ product.name }}</h3>
+                    <p class="price">₹{{ product.price }}</p>
+                    <p class="stock">Stock: {{ product.stock }}</p>
+                    <p>{{ product.description|truncatewords:20 }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products available at the moment.</p>
+    {% endif %}
+</div>
+
+<footer>
+    &copy; {{ now|date:"Y" }} E-Commerce Platform. All rights reserved.
+</footer>
+
+</body>
+</html>
